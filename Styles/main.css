@@ -1,7 +1,9 @@
 :root {
+  --circle-size: 320px;
   --diamond-size: 60px;
-  --edge-distance: -210px;
-  --slideX: calc(var(--diamond-size) - var(--edge-distance));
+  --edge-distance: -60%;
+  --top-distance: 145px;
+  --slideX: calc((var(--circle-size) - 14%) - var(--diamond-size));
 }
 
 #dataContainer {
@@ -22,8 +24,8 @@
 }
 
 .circle {
-  width: 320px;
-  height: 320px;
+  width: var(--circle-size);
+  height: var(--circle-size);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +54,7 @@
   background-color: red;
   position: relative;
   left: var(--edge-distance);
-  top: 145px;
+  top: var(--top-distance);
   animation: 3s spin-and-slide-first linear forwards, 4s slideY linear forwards;
   animation-delay: 0.5s, 4.5s;
 }
@@ -61,7 +63,7 @@
   background-color: purple;
   position: relative;
   right: var(--edge-distance);
-  top: 145px;
+  top: var(--top-distance);
   animation: 3s spin-and-slide-second linear forwards;
   animation-delay: 1.5s;
 }
@@ -93,5 +95,22 @@
 
   100% {
     transform: translateY(145px) rotate(135deg);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    --circle-size: 160px;
+    --diamond-size: 30px;
+    --top-distance: 72.5px;
+    --slideX: calc((var(--circle-size) - 14%) - var(--diamond-size));
+  }
+}
+
+@media screen and (max-height: 650px) {
+  :root {
+    --circle-size: 160px;
+    --diamond-size: 30px;
+    --top-distance: 72.5px;
   }
 }
