@@ -60,14 +60,14 @@ body {
   position: relative;
   left: var(--edge-distance);
   top: var(--top-distance);
-  animation: 3s spin-and-slide-first ease-in forwards;
+  animation: 2s spin-and-slide-first ease-in forwards;
   animation-delay: 0.5s;
 }
 
 .diamond:nth-of-type(2) {
   background-color: var(--diamond-2-bg);
-  animation: 3s spin-and-slide-third linear forwards;
-  animation-delay: 3.5s;
+  animation: 2s spin-and-slide-third ease-in forwards;
+  animation-delay: 3s;
   z-index: 2;
 }
 
@@ -76,8 +76,13 @@ body {
   position: relative;
   right: var(--edge-distance);
   top: var(--top-distance);
-  animation: 3s spin-and-slide-second ease-in forwards;
+  animation: 2s spin-and-slide-second ease-in forwards;
   animation-delay: 1.5s;
+}
+
+.circle .diamond {
+  animation: 1s glow ease-in forwards;
+  animation-delay: 5s;
 }
 
 @keyframes spin-and-slide-first {
@@ -130,6 +135,17 @@ body {
   100% {
     opacity: 0;
     background-color: var(--end-color);
+  }
+}
+
+@keyframes glow {
+  0% {
+    background-color: var(--white);
+  }
+
+  100% {
+    background-color: goldenrod;
+    box-shadow: 0 0 3px 3px goldenrod;
   }
 }
 
