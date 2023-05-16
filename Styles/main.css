@@ -5,6 +5,16 @@
   --top-distance: 145px;
   --slideX: calc((var(--circle-size) - 14%) - var(--diamond-size));
   --slideY: calc((var(--circle-size) / 2) + (var(--top-distance) - var(--diamond-size) + 14%));
+  --circle-bg: #034159;
+  --white: #EDEDED;
+  --diamond-1-bg: #0CF25D;
+  --diamond-2-bg: #038C3E;
+  --diamond-3-bg: #02735E;
+  --end-color: cyan;
+}
+
+body {
+  background-color: #0d1e28;
 }
 
 #dataContainer {
@@ -31,8 +41,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background-color: #609EAB;
-  border: 4px solid #EBC25C;
+  background-color: var(--circle-bg);
+  border: 2px solid var(--white);
 }
 
 .circle .diamond {
@@ -42,31 +52,31 @@
 .diamond {
   width: var(--diamond-size);
   height: var(--diamond-size);
-  background-color: #B6C0C6;
+  background-color: var(--white);
+}
+
+.flex-row .diamond:first-of-type {
+  background-color: var(--diamond-1-bg);
+  position: relative;
+  left: var(--edge-distance);
+  top: var(--top-distance);
+  animation: 3s spin-and-slide-first ease-in forwards;
+  animation-delay: 0.5s;
 }
 
 .diamond:nth-of-type(2) {
-  background-color: goldenrod;
+  background-color: var(--diamond-2-bg);
   animation: 3s spin-and-slide-third linear forwards;
   animation-delay: 3.5s;
   z-index: 2;
 }
 
-.flex-row .diamond:first-of-type {
-  background-color: red;
-  position: relative;
-  left: var(--edge-distance);
-  top: var(--top-distance);
-  animation: 3s spin-and-slide-first linear forwards;
-  animation-delay: 0.5s;
-}
-
 .flex-row .diamond:last-of-type {
-  background-color: purple;
+  background-color: var(--diamond-3-bg);
   position: relative;
   right: var(--edge-distance);
   top: var(--top-distance);
-  animation: 3s spin-and-slide-second linear forwards;
+  animation: 3s spin-and-slide-second ease-in forwards;
   animation-delay: 1.5s;
 }
 
@@ -79,8 +89,13 @@
     transform: translateX(var(--slideX)) rotate(135deg);
   }
 
-  100% {
+  95% {
     transform: translate(var(--slideX), calc(var(--slideY) - var(--top-distance))) rotate(135deg);
+  }
+
+  100% {
+    opacity: 0;
+    background-color: var(--end-color);
   }
 }
 
@@ -93,8 +108,13 @@
     transform: translateX(calc(-1 * var(--slideX))) rotate(135deg); /* Multiply by -1 for negative value. */
   }
 
-  100% {
+  95% {
     transform: translate(calc(-1 * var(--slideX)), calc(var(--slideY) - var(--top-distance))) rotate(135deg);
+  }
+
+  100% {
+    opacity: 0;
+    background-color: var(--end-color);
   }
 }
 
@@ -103,8 +123,13 @@
     transform: rotate(0deg);
   }
 
-  100% {
+  95% {
     transform: translateY(var(--slideY)) rotate(135deg);
+  }
+
+  100% {
+    opacity: 0;
+    background-color: var(--end-color);
   }
 }
 
