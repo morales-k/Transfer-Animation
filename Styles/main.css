@@ -4,6 +4,7 @@
   --edge-distance: -60%;
   --top-distance: 145px;
   --slideX: calc((var(--circle-size) - 14%) - var(--diamond-size));
+  --slideY: calc((var(--circle-size) / 2) + (var(--top-distance) - var(--diamond-size) + 14%));
 }
 
 #dataContainer {
@@ -48,6 +49,7 @@
   background-color: goldenrod;
   animation: 3s spin-and-slide-third linear forwards;
   animation-delay: 3.5s;
+  z-index: 2;
 }
 
 .flex-row .diamond:first-of-type {
@@ -55,8 +57,8 @@
   position: relative;
   left: var(--edge-distance);
   top: var(--top-distance);
-  animation: 3s spin-and-slide-first linear forwards, 4s slideY linear forwards;
-  animation-delay: 0.5s, 4.5s;
+  animation: 3s spin-and-slide-first linear forwards;
+  animation-delay: 0.5s;
 }
 
 .flex-row .diamond:last-of-type {
@@ -73,8 +75,12 @@
     transform: rotate(0deg);
   }
 
-  100% {
+  50% {
     transform: translateX(var(--slideX)) rotate(135deg);
+  }
+
+  100% {
+    transform: translate(var(--slideX), calc(var(--slideY) - var(--top-distance))) rotate(135deg);
   }
 }
 
@@ -83,8 +89,12 @@
     transform: rotate(0deg);
   }
 
-  100% {
+  50% {
     transform: translateX(calc(-1 * var(--slideX))) rotate(135deg); /* Multiply by -1 for negative value. */
+  }
+
+  100% {
+    transform: translate(calc(-1 * var(--slideX)), calc(var(--slideY) - var(--top-distance))) rotate(135deg);
   }
 }
 
@@ -94,7 +104,7 @@
   }
 
   100% {
-    transform: translateY(145px) rotate(135deg);
+    transform: translateY(var(--slideY)) rotate(135deg);
   }
 }
 
@@ -103,7 +113,6 @@
     --circle-size: 160px;
     --diamond-size: 30px;
     --top-distance: 72.5px;
-    --slideX: calc((var(--circle-size) - 14%) - var(--diamond-size));
   }
 }
 
